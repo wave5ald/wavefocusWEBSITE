@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/wave5ald/wavefocusWEBSITE#readme",
   "dependencies": {
+    "@vercel/analytics": "^2.0.1",
     "@vercel/speed-insights": "^2.1.0"
   }
 }
