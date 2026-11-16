@@ -3,7 +3,7 @@
 Installable offline-first progressive web app. This folder is the Firebase
 Hosting root (`firebase.json` deploys it as-is).
 
-Live: <https://gen-lang-client-0965379779.web.app>
+Live: <https://wavefocus.vercel.app/>
 
 ## v2 changes
 
