@@ -1,0 +1,52 @@
+/* Inline SVG icon set (stroke icons sized by CSS). */
+
+const wrap = (inner, extra = '') =>
+  `<svg viewBox="0 0 24 24" aria-hidden="true" ${extra}>${inner}</svg>`;
+
+export const icons = {
+  check: wrap('<path d="m5 12.5 4.5 4.5L19 7.5"/>'),
+  plus: wrap('<path d="M12 5v14M5 12h14"/>'),
+  minus: wrap('<path d="M5 12h14"/>'),
+  close: wrap('<path d="M6 6l12 12M18 6 6 18"/>'),
+  chevronRight: wrap('<path d="m9 6 6 6-6 6"/>'),
+  chevronLeft: wrap('<path d="m15 6-6 6 6 6"/>'),
+  chevronDown: wrap('<path d="m6 9 6 6 6-6"/>'),
+  trash: wrap('<path d="M4 7h16M9 7V4h6v3M6 7l1 13h10l1-13M10 11v5M14 11v5"/>'),
+  clock: wrap('<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>'),
+  flame: wrap('<path d="M12 3c3 4 6 5.5 6 9.5A6 6 0 0 1 6 12.5C6 9 8 6 12 3Z"/><path d="M12 20a3 3 0 0 1-2-5c1 1 2 1.5 2 3 0-2 2-2.5 2-5 1.5 1.5 2 3 1 5a3 3 0 0 1-3 2Z"/>'),
+  coin: wrap('<circle cx="12" cy="12" r="9"/><path d="M12 7v10M9.5 9h4a1.8 1.8 0 0 1 0 3.6h-3a1.8 1.8 0 0 0 0 3.6h4"/>'),
+  sparkle: wrap('<path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8L12 3Z"/><path d="M19 16l.8 2.2L22 19l-2.2.8L19 22l-.8-2.2L16 19l2.2-.8L19 16Z"/>'),
+  target: wrap('<circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="4"/><circle cx="12" cy="12" r=".6" fill="currentColor"/>'),
+  calendar: wrap('<rect x="3" y="5" width="18" height="16" rx="3"/><path d="M8 3v4M16 3v4M3 11h18"/>'),
+  timer: wrap('<circle cx="12" cy="13" r="8"/><path d="M12 9v4l2.5 2M9 2h6"/>'),
+  note: wrap('<path d="M6 3h9l5 5v13H6z"/><path d="M15 3v5h5M9 13h6M9 17h4"/>'),
+  grid: wrap('<rect x="3" y="3" width="7" height="7" rx="2"/><rect x="14" y="3" width="7" height="7" rx="2"/><rect x="3" y="14" width="7" height="7" rx="2"/><rect x="14" y="14" width="7" height="7" rx="2"/>'),
+  trend: wrap('<path d="M4 17l5-5 4 3 7-8"/><path d="M15 7h5v5"/>'),
+  settings: wrap('<circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.9l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-2.9 1.2 2 2 0 1 1-4 0 1.7 1.7 0 0 0-2.9-1.2l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1A1.7 1.7 0 0 0 3 15a2 2 0 1 1 0-4 1.7 1.7 0 0 0 1.4-2.9l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1A1.7 1.7 0 0 0 10 4a2 2 0 1 1 4 0 1.7 1.7 0 0 0 2.9 1.4l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1A1.7 1.7 0 0 0 21 11a2 2 0 1 1 0 4Z"/>'),
+  moon: wrap('<path d="M20 14.5A8.5 8.5 0 0 1 9.5 4 8.5 8.5 0 1 0 20 14.5Z"/>'),
+  sun: wrap('<circle cx="12" cy="12" r="4.2"/><path d="M12 2v2.5M12 19.5V22M4.2 4.2l1.8 1.8M18 18l1.8 1.8M2 12h2.5M19.5 12H22M4.2 19.8 6 18M18 6l1.8-1.8"/>'),
+  globe: wrap('<circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.5 3.8 5.5 3.8 9S14.5 18.5 12 21c-2.5-2.5-3.8-5.5-3.8-9S9.5 5.5 12 3Z"/>'),
+  download: wrap('<path d="M12 3v12M7 11l5 5 5-5M5 21h14"/>'),
+  upload: wrap('<path d="M12 16V4M7 9l5-5 5 5M5 21h14"/>'),
+  cloud: wrap('<path d="M7 18h10a4 4 0 0 0 .6-7.96A6 6 0 0 0 6.2 9.3 4.35 4.35 0 0 0 7 18Z"/>'),
+  cloudOff: wrap('<path d="M7 18h8.5M4 4l16 16M19.4 14.6A4 4 0 0 0 17 8.04 6 6 0 0 0 7.5 6.5"/>'),
+  share: wrap('<path d="M12 15V3M8 7l4-4 4 4"/><path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-7"/>'),
+  install: wrap('<rect x="3" y="3" width="18" height="18" rx="4"/><path d="M12 8v7M9 12.5l3 3 3-3"/>'),
+  refresh: wrap('<path d="M21 12a9 9 0 1 1-2.6-6.4M21 4v5h-5"/>'),
+  play: wrap('<path d="M8 5.5v13l11-6.5Z" fill="currentColor" stroke="none"/>'),
+  pause: wrap('<path d="M8 5h3v14H8zM13 5h3v14h-3z" fill="currentColor" stroke="none"/>'),
+  battery: wrap('<rect x="2" y="7" width="17" height="10" rx="3"/><path d="M21 11v2"/><path d="M11 9l-2 3h3l-1 3"/>'),
+  link: wrap('<path d="M10 13a4 4 0 0 0 6 .5l2-2a4 4 0 0 0-5.7-5.7L11 7"/><path d="M14 11a4 4 0 0 0-6-.5l-2 2A4 4 0 0 0 11.7 18L13 17"/>'),
+  info: wrap('<circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8v.5"/>'),
+  bell: wrap('<path d="M6 9a6 6 0 1 1 12 0c0 5 2 6 2 6H4s2-1 2-6Z"/><path d="M10 19a2 2 0 0 0 4 0"/>'),
+  shield: wrap('<path d="M12 3l8 3v5c0 5-3.4 8.4-8 10-4.6-1.6-8-5-8-10V6Z"/><path d="m8.5 12 2.5 2.5 4.5-5"/>'),
+  arrowRight: wrap('<path d="M4 12h16M14 6l6 6-6 6"/>'),
+  home: wrap('<path d="M4 10.5 12 3l8 7.5V21H4Z"/><path d="M9.5 21v-6h5v6"/>'),
+  wave: wrap('<path d="M2 14c2.5 0 2.5-3 5-3s2.5 3 5 3 2.5-3 5-3 2.5 3 5 3"/><path d="M2 19c2.5 0 2.5-3 5-3s2.5 3 5 3 2.5-3 5-3 2.5 3 5 3"/>'),
+  dot: wrap('<circle cx="12" cy="12" r="4" fill="currentColor" stroke="none"/>'),
+  dots: wrap('<circle cx="12" cy="5" r="1.6" fill="currentColor" stroke="none"/><circle cx="12" cy="12" r="1.6" fill="currentColor" stroke="none"/><circle cx="12" cy="19" r="1.6" fill="currentColor" stroke="none"/>'),
+  edit: wrap('<path d="M4 20h4l10-10a2.8 2.8 0 0 0-4-4L4 16Z"/><path d="M13.5 6.5 17.5 10.5"/>'),
+  lock: wrap('<rect x="4" y="10" width="16" height="11" rx="3"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/>'),
+};
+
+export const icon = (name) => icons[name] || icons.dot;

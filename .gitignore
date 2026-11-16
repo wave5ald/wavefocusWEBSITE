@@ -1,0 +1,7 @@
+﻿node_modules/
+.firebase/
+*.log
+.DS_Store
+
+# Installers are hosted (Firebase Hosting / GitHub Releases), not committed.
+updates/*.exe
