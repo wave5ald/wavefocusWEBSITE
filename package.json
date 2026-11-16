@@ -1,0 +1,23 @@
+{
+  "name": "wavefocus",
+  "version": "1.0.0",
+  "description": "Daily routine tracker with auto-resetting tasks, streaks, focus timer, quests, notes and progress analytics",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "node server.mjs",
+    "build": "echo 'No build step required for static site'",
+    "start": "node server.mjs"
+  },
+  "keywords": [
+    "productivity",
+    "focus",
+    "routine",
+    "timer"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@vercel/analytics": "^1.4.1"
+  }
+}
