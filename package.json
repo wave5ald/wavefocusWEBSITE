@@ -1,0 +1,23 @@
+{
+  "name": "primary",
+  "version": "1.0.0",
+  "description": "Installable offline-first progressive web app. This folder is the Firebase Hosting root (`firebase.json` deploys it as-is).",
+  "main": "sw.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wave5ald/wavefocusWEBSITE.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/wave5ald/wavefocusWEBSITE/issues"
+  },
+  "homepage": "https://github.com/wave5ald/wavefocusWEBSITE#readme",
+  "dependencies": {
+    "@vercel/speed-insights": "^2.1.0"
+  }
+}
