@@ -1,4 +1,4 @@
-# Wave Focus — Website (PWA) 2.0
+# Wave Focus — Website (PWA)
 
 Installable offline-first progressive web app. This folder is the Firebase
 Hosting root (`firebase.json` deploys it as-is).
@@ -30,9 +30,15 @@ firebase deploy --only hosting --project gen-lang-client-0965379779
 No build step: plain ES modules. `firebase.json` sets no-cache headers for
 `sw.js`, `index.html` and `updates/version.json`.
 
-## Windows update manifest
+## App update manifest
 
-`updates/version.json` is read by the desktop app on every launch and by
-"Check for updates" in Settings. Publish it with
-`tools/publish-update.ps1` (fills in SHA-256 and size, optional `-Deploy`)
-after uploading the new `WaveFocus-<version>.exe` to a GitHub release.
+`updates/version.json` is the only file the Windows and Android apps read.
+It holds the desktop release fields plus an `android` block
+(`version_name`, `version_code`, `apk_url`). The website itself does not
+use it — the PWA updates through its service worker.
+
+Publish it with `tools/publish-update.cmd` (fills in SHA-256/size and can
+deploy with `-Deploy`) after uploading the new `WaveFocus-<version>-Setup.exe`
+and `WaveFocus-<version>.apk` to their GitHub releases. Keep
+`updates/version.json` and the no-cache header in `firebase.json` in every
+deployment, otherwise the apps cannot check for updates.
