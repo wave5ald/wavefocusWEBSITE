@@ -3,7 +3,7 @@
    Offline-first app shell. Bump VERSION whenever the shell changes.
    ========================================================================== */
 
-const VERSION = 'wavefocus-v2.0.0';
+const VERSION = 'wavefocus-v2.2.0';
 const SHELL_CACHE = `${VERSION}-shell`;
 const RUNTIME_CACHE = `${VERSION}-runtime`;
 
@@ -23,6 +23,7 @@ const SHELL = [
   './js/ui.js',
   './js/sync.js',
   './js/firebase-config.js',
+  './js/theme-hue.js',
   './js/editors/note.js',
   './js/views/routine.js',
   './js/views/focus.js',

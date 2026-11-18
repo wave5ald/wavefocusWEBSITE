@@ -53,6 +53,7 @@ function seedState() {
     v: SCHEMA_VERSION,
     settings: {
       theme: 'system',
+      hue: 0,
       lang: 'en',
       edition: 'standard',
       weekStart: 1,

@@ -85,6 +85,67 @@ function rowToggle(label, checked, action) {
     </div>`;
 }
 
+/* -------------------------- theme colour slider -------------------------- */
+
+const PRESET_HUES = [350, 25, 45, 160, 199, 239, 271, 330];
+const BASE_PRIMARY_HUE = 199;
+
+const hueShiftFor = (target) => ((target - BASE_PRIMARY_HUE) % 360 + 360) % 360;
+
+function themeColorBlock() {
+  const shift = Math.round(Number(state.settings.hue) || 0);
+  const presets = PRESET_HUES.map((hue) => {
+    const value = hueShiftFor(hue);
+    const active = Math.abs(value - shift) < 4 ? ' is-active' : '';
+    return `<button class="hue-preset${active}" type="button" data-hue-preset="${value}" aria-label="${hue}°" style="background:hsl(${hue} 92% 58%)"></button>`;
+  }).join('');
+
+  return `
+    <div class="theme-color">
+      <div class="theme-color__head">
+        <span class="theme-color__dot"></span>
+        <span class="small strong">${t('themeColor')}</span>
+        <span class="theme-color__value" data-hue-value>${shift}°</span>
+      </div>
+      <p class="theme-color__hint">${t('themeColorHint')}</p>
+      <input class="hue-slider" type="range" min="0" max="360" step="1" value="${shift}"
+             aria-label="${escapeAttr(t('themeColor'))}" data-hue-slider>
+      <div class="hue-presets">
+        ${presets}
+        <button class="hue-reset" type="button" data-hue-reset ${shift ? '' : 'disabled'}>${t('resetColor')}</button>
+      </div>
+    </div>`;
+}
+
+function wireThemeColor(sheet) {
+  const slider = sheet.querySelector('[data-hue-slider]');
+  const valueLabel = sheet.querySelector('[data-hue-value]');
+  const reset = sheet.querySelector('[data-hue-reset]');
+
+  const paint = (value) => {
+    setSetting({ hue: value });
+    if (valueLabel) valueLabel.textContent = `${value}°`;
+    if (reset) reset.disabled = value === 0;
+    sheet.querySelectorAll('[data-hue-preset]').forEach((dot) => {
+      dot.classList.toggle('is-active', Math.abs(Number(dot.dataset.huePreset) - value) < 4);
+    });
+  };
+
+  slider?.addEventListener('input', () => paint(Number(slider.value) || 0));
+  slider?.addEventListener('change', () => toast(t('themeColorSaved')));
+  reset?.addEventListener('click', () => {
+    if (slider) slider.value = '0';
+    paint(0);
+  });
+  sheet.querySelectorAll('[data-hue-preset]').forEach((dot) => {
+    dot.addEventListener('click', () => {
+      const value = Number(dot.dataset.huePreset) || 0;
+      if (slider) slider.value = String(value);
+      paint(value);
+    });
+  });
+}
+
 function syncTime(ts) {
   try {
     return new Date(ts).toLocaleString(state.settings.lang === 'ar' ? 'ar' : 'en', {
@@ -180,6 +241,8 @@ export function openSettings() {
             ${[['system', t('systemDefault'), 'sun'], ['light', t('lightMode'), 'sun'], ['dark', t('darkMode'), 'moon']]
               .map(([value, label, ico]) => `<button class="segmented__btn ${state.settings.theme === value ? 'is-active' : ''}" type="button" data-theme-choice="${value}">${escapeHtml(label)}</button>`).join('')}
           </div>
+
+          ${themeColorBlock()}
 
           <div class="segmented" role="group" aria-label="${t('language')}">
             <button class="segmented__btn ${state.settings.lang === 'en' ? 'is-active' : ''}" type="button" data-lang-choice="en">English</button>
@@ -302,6 +365,8 @@ export function openSettings() {
         close();
         openSettings();
       };
+
+      wireThemeColor(sheet);
 
       sheet.querySelectorAll('[data-theme-choice]').forEach((button) => {
         button.addEventListener('click', () => {

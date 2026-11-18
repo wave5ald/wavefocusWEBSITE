@@ -11,6 +11,7 @@ import { initHijriSync } from './hijri-sync.js';
 import { initInstall, canPromptInstall, isInstalled, promptInstall, showInstallCard } from './install.js';
 import { $, isIOS, openSheet, toast } from './ui.js';
 import { openMoreSheet, openSettings } from './views/settings.js';
+import { applyHue } from './theme-hue.js';
 
 import * as routineView from './views/routine.js';
 import * as focusView from './views/focus.js';
@@ -72,6 +73,8 @@ function applyTheme() {
   });
   const statusBar = document.querySelector('meta[name="apple-mobile-web-app-status-bar-style"]');
   if (statusBar) statusBar.setAttribute('content', dark ? 'black-translucent' : 'default');
+  // Repaint the accent palette from the settings colour slider.
+  applyHue(appEl, Number(state.settings.hue) || 0, dark);
 }
 
 darkQuery.addEventListener?.('change', () => {

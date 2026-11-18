@@ -1,16 +1,16 @@
 {
-  "version": "2.1.0",
-  "download_url": "https://github.com/wave5ald/wavefocusEXE/releases/download/Release/WaveFocus-2.1.0-Setup.exe",
-  "release_notes": "In-app updates for Windows and Android: automatic checks, verified downloads and one-click install.",
+  "version": "2.2.0",
+  "download_url": "https://github.com/wave5ald/wavefocusEXE/releases/download/Release/WaveFocus-2.2.0-Setup.exe",
+  "release_notes": "New theme color slider: open Settings > Theme & Appearance and drag the hue slider to repaint every accent, button and highlight. Presets and a one-tap reset are included.",
   "release_page": "https://github.com/wave5ald/wavefocusEXE/releases/tag/Release",
-  "sha256": "8ca21570c48a29375bbe1de9402143f574b21fc3da0594c5828c6d1e089dd2a1",
-  "size_bytes": 105476608,
+  "sha256": "24594a345501c0cf9eac479eca99cf31668ad59de8de0ad96715ee5996b88e06",
+  "size_bytes": 105488896,
   "android": {
-    "version_name": "2.1",
-    "version_code": 3,
-    "apk_url": "https://github.com/wave5ald/wavefocusAPK/releases/download/Release/WaveFocus-2.1.apk",
-    "release_notes": "In-app updates: the app now checks for new versions and installs them with one tap.",
-    "sha256": "99204a292760856de29602fd8bc4e6809c39ca4babb1448649d1dd94e06e3c99",
+    "version_name": "2.2",
+    "version_code": 4,
+    "apk_url": "https://github.com/wave5ald/wavefocusAPK/releases/download/Release/WaveFocus-2.2.apk",
+    "release_notes": "New theme color slider: open Settings > Theme & Appearance and drag the hue slider to repaint every accent, button and highlight. Presets and a one-tap reset are included.",
+    "sha256": "bdcfc7c18b8806a74649ae5c11829c65672aa87e18db608d3feb7cbd90963af3",
     "size_bytes": 5333070
   }
 }
