@@ -106,10 +106,41 @@ if ($ApkUrl) {
     } catch { }
 }
 
-$json = $payload | ConvertTo-Json -Depth 5
-# PowerShell pads JSON with `"key":  value`; keep one space so the file stays tidy.
-$json = $json -replace '(?m)^(\s*"[^"]+"):\s+', '$1: '
-[System.IO.File]::WriteAllText($manifestPath, $json, (New-Object System.Text.UTF8Encoding($false)))
+# ConvertTo-Json escapes "<", ">", "&" and "'" for HTML safety; the manifest is
+# JSON, not HTML, so unescape them to keep the notes readable.
+function ConvertTo-JsonString([string]$text) {
+    $encoded = ConvertTo-Json $text -Compress
+    return $encoded.Replace('\u003c', '<').Replace('\u003e', '>').Replace('\u0026', '&').Replace('\u0027', "'")
+}
+
+# ConvertTo-Json both over-indents nested hashtables and escapes ">"/"&" as
+# \u003e / \u0026, which makes the published manifest hard to read. Emit the
+# two-space pretty format by hand so the file stays diff-friendly.
+function Format-Json($value, [int]$indent = 0) {
+    $pad = " " * $indent
+    $inner = " " * ($indent + 2)
+    if ($null -eq $value) { return "null" }
+    if ($value -is [bool]) { return $value.ToString().ToLowerInvariant() }
+    if ($value -is [string]) { return (ConvertTo-JsonString $value) }
+    if ($value -is [System.Collections.IDictionary]) {
+        if ($value.Count -eq 0) { return "{}" }
+        $lines = foreach ($key in $value.Keys) {
+            $name = ConvertTo-JsonString ([string]$key)
+            "$inner${name}: " + (Format-Json $value[$key] ($indent + 2))
+        }
+        return "{`n" + ($lines -join ",`n") + "`n$pad}"
+    }
+    if ($value -is [System.Collections.IEnumerable]) {
+        $items = @($value)
+        if ($items.Count -eq 0) { return "[]" }
+        $lines = foreach ($item in $items) { $inner + (Format-Json $item ($indent + 2)) }
+        return "[`n" + ($lines -join ",`n") + "`n$pad]"
+    }
+    return (ConvertTo-Json $value -Compress)
+}
+
+$json = Format-Json $payload
+[System.IO.File]::WriteAllText($manifestPath, $json + "`n", (New-Object System.Text.UTF8Encoding($false)))
 Write-Host "Wrote $manifestPath"
 Write-Host $json
 

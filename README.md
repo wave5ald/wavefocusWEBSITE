@@ -1,9 +1,26 @@
-# Wave Focus — Website (PWA)
+# Wave Focus - Website (PWA) 2.2.0
 
 Installable offline-first progressive web app. This folder is the Firebase
 Hosting root (`firebase.json` deploys it as-is).
 
 Live: <https://wavefocus.vercel.app/>
+Manifest mirror: <https://gen-lang-client-0965379779.web.app>
+
+## v2.2 changes
+
+- **Theme color slider** (`js/theme-hue.js`, `js/views/settings.js`,
+  `css/app.css`): Settings → *Appearance* gains a **Theme color** card with a
+  hue slider, eight preset swatches and **Reset**. `hueTokens()` writes the
+  accent CSS variables (`--primary`, `--primary-soft`, `--secondary`,
+  `--tertiary`, the two background glows) on `#app`, so every button, ring,
+  chip and highlight repaints while surfaces and text stay neutral. A zero
+  shift removes the inline variables, leaving the original design untouched.
+- `js/app.js` re-applies the saved hue through `applyHue()` on every theme
+  change and on reload; `js/store.js` seeds `settings.hue = 0`.
+- New strings (`themeColor`, `themeColorHint`, `resetColor`,
+  `themeColorSaved`) in English and Arabic; the version row reads `2.2.0`.
+- `sw.js` cache bumped to `wavefocus-v2.2.0` (adds `js/theme-hue.js` to the
+  shell), and `updates/version.json` now advertises 2.2.0 / versionCode 4.
 
 ## v2 changes
 
@@ -32,12 +49,17 @@ No build step: plain ES modules. `firebase.json` sets no-cache headers for
 
 ## App update manifest
 
-`updates/version.json` is the only file the Windows and Android apps read.
-It holds the desktop release fields plus an `android` block
-(`version_name`, `version_code`, `apk_url`). The website itself does not
-use it — the PWA updates through its service worker.
+`updates/version.json` is the only file the Windows and Android apps read
+(`https://gen-lang-client-0965379779.web.app/updates/version.json`). It holds
+the desktop release fields plus an `android` block (`version_name`,
+`version_code`, `apk_url`). The website itself does not use it - the PWA
+updates through its service worker.
 
-Publish it with `tools/publish-update.cmd` (fills in SHA-256/size and can
+Current content: `2.2.0` for Windows, `2.2` / `version_code 4` for Android,
+with the SHA-256 and byte size of `WaveFocus-2.2.0-Setup.exe` and
+`WaveFocus-2.2.apk`.
+
+Publish it with `tools/publish-update.ps1` (fills in SHA-256/size and can
 deploy with `-Deploy`) after uploading the new `WaveFocus-<version>-Setup.exe`
 and `WaveFocus-<version>.apk` to their GitHub releases. Keep
 `updates/version.json` and the no-cache header in `firebase.json` in every
